@@ -12,7 +12,7 @@
     "endPlace": "Manchester, UK",
     "endCoord": "61.00/75.00",
     "driver":"ItamarDori",
-    "commanderPhone": "+34 125 636 4826",
+    "driverPhone": "+34 125 636 4826",
     "arrived": false,
     "inMotion": false
     },
@@ -30,7 +30,7 @@
         "endPlace": "Manchester, UK",
         "endCoord": "61.00/75.00",
         "driver":"John Doe",
-        "commanderPhone": "+1 555 123 4826",
+        "driverPhone": "+1 555 123 4826",
         "arrived": false,
         "inMotion": false
     },
@@ -48,7 +48,7 @@
         "endPlace": "Hamburg, Germany",
         "endCoord": "11.00/84.00",
         "driver":"Jane Doe",
-        "commanderPhone": "+33 455 123 4826",
+        "driverPhone": "+33 455 123 4826",
         "arrived": false,
         "inMotion": false
     }
