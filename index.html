@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>שלג</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <style>
+        .hero {
+            margin-bottom: 1.5rem;
+        }
+
+        .motion {
+            background-color: lightyellow!important;
+        }
+
+        .arrived {
+            background-color: lightgreen!important;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="">
+                  Convoyage
+                </a>
+                <div class="navbar-menu">
+                    <div class="navbar-start">
+                          <a class="navbar-item" href="https://bulma.io/">
+                            Home
+                          </a>
+                    </div>
+                </div>
+                <button class="button navbar-burger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+        </nav>
+        <section class="hero is-info">
+                <div class="hero-body">
+                  <div class="container">
+                    <h1 class="title">
+                      Convoyage
+                    </h1>
+                    <h2 class="subtitle">
+                      Dispacher's heaven.
+                    </h2>
+                  </div>
+                </div>
+        </section>
+
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <input class="input is-rounded is-primary" type="text" placeholder="filter convoies" v-model="search">
+                </div>
+            </div>
+            <div class="columns">
+                    <div class="column is-8 is-offset-2">
+                        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th v-for="property in convoyBrief"> <a  @click="sortBy(property.realName)">{{property.displayName}} </a> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="convoy in computedConvoies" :class="{ 'motion': convoy.inMotion, 'arrived': convoy.arrived }" @click="selectedConvoy = convoy.convId">
+                                    <td v-for="property in convoyBrief"> {{convoy[property.realName]}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            <div class="columns"  v-if="selectedConvoy">
+                <div class="column is-8 is-offset-2">
+                    <article class="message is-info">
+                        <div class="message-header">
+                            <p>Convoy description:</p>
+                            <button class="delete" aria-label="delete" @click="selectedConvoy = undefined"></button>
+                        </div>
+                        <div class="message-body">
+                            <div class="columns is-multiline is-mobile">
+                                <div class="column is-3" v-for="property in convoyProp">
+                                    <strong>{{property.displayName}}</strong> <br/> {{convoies.find(x => x.convId == selectedConvoy)[property.realName]}}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="column is-4 is-offset-4">
+                        <a class="button is-warning" @click="declareMotion(selectedConvoy)">Departed</a>
+                        <a class="button is-success" @click="declareArrival(selectedConvoy)">Arrived</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script src="./app.js"></script>
+</html>
