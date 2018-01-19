@@ -1,10 +1,51 @@
-let app = new Vue({
-    el: '#app',
-    data: {
-        search: '',
+<template>
+  <div id="app">
+        <navbar></navbar>
+
+        <hero></hero>
+
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half is-offset-one-quarter">
+                    <input class="input is-rounded is-primary" type="text" placeholder="סנן שיירות" v-model="search">
+                </div>
+            </div>
+            <div class="columns">
+                    <div class="column is-8 is-offset-2">
+                        <convoy-table :properties="convoyBrief"
+                                      :data="briefedConvoies"
+                                      :filter-key="search"
+                                      @choose:convoy="con => selectedConvoy = con">
+                        </convoy-table>
+                    </div>
+            </div>
+            <div class="columns"  v-if="selectedConvoy">
+                <div class="column is-8 is-offset-2">
+                    <convoy-description :properties="convoyProp"
+                                        :convoy="selectedConvoy"
+                                        @close:description="selectedConvoy = undefined">
+                    </convoy-description>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import ConvoyTable from './components/ConvoyTable.vue';
+import ConvoyDescription from './components/ConvoyDescription.vue';
+import Navbar from './components/Navbar.vue';
+import Hero from './components/Hero.vue'
+
+export default {
+  name: 'app',
+  components: { ConvoyTable, ConvoyDescription, Navbar, Hero },
+  data () {
+    return {
+     search: '',
         sortKey: '',
         selectedConvoy: undefined,
-        convoyBrief: [
+                convoyBrief: [
             {
                 "displayName": "#",
                 "realName": "convId"
@@ -142,45 +183,21 @@ let app = new Vue({
             "arrived": false,
             "inMotion": false
         }
-    ]},
-    computed: {
-        briefedConvoies() {
-            return this.convoies.map(x => {
-                x.startDate = new Date(parseInt(x.startDate)).toLocaleString();
-                x.finishDate = new Date(parseInt(x.finishDate)).toLocaleString();
-                return x;
-            })
-        },
-        filteredConvoies() {
-            return this.search ? this.briefedConvoies.filter(obj => Object.keys(obj).some(key => obj[key].toString().includes(this.search))) : this.briefedConvoies;
-        },
-        computedConvoies() {
-            if(this.sortKey) {
-                return (this.sortKey[0] === '-') ? this.filteredConvoies.reverse() : this.filteredConvoies.sort((a,b) => (a[this.sortKey] > b[this.sortKey]) ? 1 : -1);
-            } else {
-                return this.filteredConvoies;
-            }
-        }
-    },
-    methods: {
-        sortBy(key) {
-            if(!this.sortKey) {
-                this.sortKey = key;
-            } else if(key == this.sortKey) {
-                this.sortKey = `-${this.sortKey}`;
-            } else if(this.sortKey.indexOf(key) == 1) {
-                this.sortKey = key;
-            } else {
-                this.sortKey = key;
-            }
-        },
-        declareMotion(convId) {
-            this.convoies.find(x => x.convId == convId).inMotion = true;
-            this.convoies.find(x => x.convId == convId).arrived = false;
-        },
-        declareArrival(convId) {
-            this.convoies.find(x => x.convId == convId).inMotion = false;
-            this.convoies.find(x => x.convId == convId).arrived = true;
-        }
+    ]
     }
-})
+  },
+  computed: {
+    briefedConvoies() {
+          return this.convoies.map(x => {
+              x.startDate = new Date(parseInt(x.startDate)).toLocaleString();
+              x.finishDate = new Date(parseInt(x.finishDate)).toLocaleString();
+              return x;
+          })
+      }
+    }
+  }
+</script>
+
+<style>
+
+</style>
