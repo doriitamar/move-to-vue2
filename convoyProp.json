@@ -1,0 +1,58 @@
+[
+    {
+        "displayName": "#",
+        "realName": "convId"
+    },
+    {
+        "displayName": "Leader plate/registration",
+        "realName": "leaderPlate"
+    },
+    {
+        "displayName": "Rear plate/registration",
+        "realName": "lastPlate"
+    },
+    {
+        "displayName": "Type",
+        "realName": "missionType"
+    },
+    {
+        "displayName": "Departure",
+        "realName": "startDate"
+    },
+    {
+        "displayName": "ETA",
+        "realName": "finishDate"
+    },
+    {
+        "displayName": "Cargo",
+        "realName": "cargoName"
+    },
+    {
+        "displayName": "Cargo amount",
+        "realName": "cargoAmount"
+    },
+    {
+        "displayName": "Origin",
+        "realName": "startPlace"
+    },
+    {
+        "displayName": "Origin coordinations",
+        "realName": "startCoord"
+    },
+    {
+        "displayName": "Destination",
+        "realName": "endPlace"
+    },
+    {
+        "displayName": "Destination coordinations",
+        "realName": "endCoord"
+    },
+    {
+        "displayName": "Driver",
+        "realName": "driver"
+    },
+    {
+        "displayName": "Contact #",
+        "realName": "driverPhone"
+    }
+]
