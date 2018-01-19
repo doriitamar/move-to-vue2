@@ -6,7 +6,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="convoy in computedData" :key="convoy.convId" :class="{ 'motion': convoy.inMotion, 'arrived': convoy.arrived }" @click="$emit('choose:convoy', convoy)">
+            <tr v-for="convoy in computedData" :key="convoy.convId" :class="{ 'motion': convoy.inMotion, 'arrived': convoy.arrived }" @click="$store.commit('selectConvoy', convoy)">
                 <td v-for="property in properties"> {{convoy[property.realName]}} </td>
             </tr>
         </tbody>

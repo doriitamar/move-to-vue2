@@ -1,10 +1,10 @@
 <template>
     <div class="content">
-        <h1>A map.</h1>
+        <h1>A map</h1>
     </div>
 </template>
 <script>
 export default {
-  name: 'map'
+  name: 'real-time-map'
 }
 </script>

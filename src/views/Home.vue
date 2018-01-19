@@ -9,8 +9,7 @@
                 <div class="column is-8 is-offset-2">
                     <convoy-table :properties="convoyBrief"
                                     :data="briefedConvoies"
-                                    :filter-key="search"
-                                    @choose:convoy="con => selectedConvoy = con">
+                                    :filter-key="search">
                     </convoy-table>
                 </div>
         </div>
@@ -29,18 +28,14 @@
 import axios from 'axios';
 import ConvoyTable from '../components/ConvoyTable.vue';
 import ConvoyDescription from '../components/ConvoyDescription.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'home',
   components: { ConvoyTable, ConvoyDescription },
   data () {
     return {
-        search: '',
-        sortKey: '',
-        selectedConvoy: undefined,
-        convoyBrief: [],
-        convoyProp: [],
-        convoies: []
+        search: ''
     }
   },
   computed: {
@@ -50,15 +45,17 @@ export default {
               x.finishDate = new Date(parseInt(x.finishDate)).toLocaleString();
               return x;
           })
-      }
+      },
+      
+      ...mapState([
+        "convoies",
+        "convoyBrief",
+        "convoyProp",
+        "selectedConvoy"
+      ])
     },
     created() {
-        axios.get("/src/assets/convoies.json").then(({data}) => this.convoies = data)
-                                              .catch(err => alert(err));
-        axios.get("/src/assets/convoyBrief.json").then(({data}) => this.convoyBrief = data)
-                                              .catch(err => alert(err));
-        axios.get("/src/assets/convoyProp.json").then(({data}) => this.convoyProp = data)
-                                              .catch(err => alert(err));
+        this.$store.dispatch('loadData');
     }
   }
 </script>

@@ -3,7 +3,7 @@
         <article class="message is-info">
             <div class="message-header">
                 <p>Convoy description</p>
-                <button class="delete" aria-label="delete" @click="$emit('close:description')"></button>
+                <button class="delete" aria-label="delete" @click="$store.commit('selectConvoy')"></button>
             </div>
             <div class="message-body">
                 <div class="columns is-multiline is-mobile">

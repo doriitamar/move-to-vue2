@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router';
 import Home from './views/Home.vue';
-import MapView from './views/Map.vue';
+import RealTimeMap from './views/RealTimeMap.vue';
 
 let routes = [
     {
@@ -10,7 +10,7 @@ let routes = [
 
     {
         path: '/map',
-        component: MapView
+        component: RealTimeMap
     }
 ];
 
