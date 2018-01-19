@@ -1,0 +1,26 @@
+[
+    {
+        "displayName": "#",
+        "realName": "convId"
+    },
+    {
+        "displayName": "Type",
+        "realName": "missionType"
+    },
+    {
+        "displayName": "Departure",
+        "realName": "startDate"
+    },
+    {
+        "displayName": "ETA",
+        "realName": "finishDate"
+    },
+    {
+        "displayName": "Cargo",
+        "realName": "cargoName"
+    },
+    {
+        "displayName": "Driver",
+        "realName": "driver"
+    }
+]
